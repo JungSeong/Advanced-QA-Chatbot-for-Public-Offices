@@ -5,7 +5,7 @@
 [![Fine Tuning](https://img.shields.io/badge/Fine%20Tuning-SFT%20Pipeline-FFB000)](https://jungseong.github.io/projects/qa-finetune/#getting-started)
 [![Inference Workflow](https://img.shields.io/badge/Inference-Model%20Serving-0A66C2)](https://jungseong.github.io/projects/qa-finetune/#getting-started)
 
-[한국어](readme/README.ko.md) | [English](readme/README.en.md)
+[한국어](README.ko.md) | [English](README.en.md)
 
 ![Q&A chatbot preview](https://jungseong.github.io/img/projects/chatbot.jpg)
 
@@ -32,3 +32,4 @@ cd QA-FineTune
 | Library Q&A inference | `도서관_QA_Finetune/final/infer/main.py` |
 | Prompt templates | `도서관_QA_Finetune/final/train/prompts.py` |
 | Experiment notebooks | `도서관_QA_Finetune/notebook/` |
+| Legal Q&A experiments | `법률_QA_Finetune/` |
