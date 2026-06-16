@@ -1,11 +1,11 @@
 # Advanced QA Chatbot for Public Offices
 
-[한국어](readme/README.ko.md) | [English](readme/README.en.md)
+[한국어](README.ko.md) | [English](README.en.md)
 
 관공서 Q&A 챗봇의 응답 품질과 추론 지연을 함께 개선하기 위한 시스템 고도화 프로젝트입니다. <br>
 
 ## 프로젝트 설명
-본 프로젝트는 관공서 FAQ 문서 기반 질의응답 시스템에서 발생하는 답변 형식 불일치, 검색 컨텍스트 부족, 추론 지연 문제를 완화하기 위해 데이터 구축, 모델 학습, 평가, 추론, 외부 도구 연동 파이프라인을 구축한 프로젝트입니다.
+본 프로젝트는 관공서 FAQ 기반 질의응답 시스템에서 발생하는 답변 형식 불일치, 검색 컨텍스트 부족, 추론 지연 문제를 완화하기 위해 데이터 구축, 모델 학습, 평가, 추론, 외부 도구 연동 파이프라인을 통합적으로 개선합니다.
 
 <details>
 <summary><strong>[1] 데이터셋 구축 및 평가 구성</strong></summary>
@@ -47,9 +47,9 @@
 ```
 <br>
 
-<img src="pdf/preview/public-office-qa-chatbot-1.png" alt="관공서 Q&A 챗봇 시스템 고도화 벤치마크 및 아키텍처" width="100%">
+<img src="../pdf/preview/public-office-qa-chatbot-1.png" alt="관공서 Q&A 챗봇 시스템 고도화 벤치마크 및 아키텍처" width="100%">
 
-[원본 PDF 보기](<pdf/관공서 Q&A 챗봇 시스템 고도화.pdf>)
+[원본 PDF 보기](<../pdf/관공서 Q&A 챗봇 시스템 고도화.pdf>)
 
 ## 시작하기
 
