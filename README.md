@@ -2,28 +2,25 @@
 
 [한국어](readme/README.ko.md) | [English](readme/README.en.md)
 
-관공서 Q&A 챗봇의 응답 품질과 추론 지연을 함께 개선하기 위한 시스템 고도화 프로젝트입니다. <br>
+Q&A 챗봇의 응답 품질 및 추론 지연을 개선한 시스템 고도화 프로젝트입니다. <br>
 
 ## 프로젝트 설명
-본 프로젝트는 관공서 FAQ 문서 기반 질의응답 시스템에서 발생하는 답변 형식 불일치, 검색 컨텍스트 부족, 추론 지연 문제를 완화하기 위해 데이터 구축, 모델 학습, 평가, 추론, 외부 도구 연동 파이프라인을 구축한 프로젝트입니다.
+본 프로젝트는 관공서 FAQ 문서 기반 질의응답 시스템에서 발생하는 답변 형식 불일치 및 추론 지연 문제를 완화하기 위해 골든 데이터셋 구축, 모델 학습 및 평가, 추론, 외부 도구 연동 파이프라인을 구축한 프로젝트입니다.
 
 <details>
-<summary><strong>[1] 데이터셋 구축 및 평가 구성</strong></summary>
+<summary><strong>데이터셋 구축 및 평가 구성</strong></summary>
 
 관공서 FAQ 원천 데이터를 기반으로 Chain-of-Thought(CoT) 및 DeepEval Synthesizer를 활용해 학습과 평가에 사용할 골든 데이터셋을 구축했습니다.
 
 | 데이터 | 역할 | 활용 목적 |
 |--------|------|-----------|
-| 원천 FAQ 데이터 | 관공서별 질의응답 문서 | 도메인 질의와 답변 형식 분석 |
-| 합성 데이터 | DeepEval Synthesizer 기반 생성 데이터 | 다양한 질문 표현과 답변 패턴 확보 |
-| 골든 데이터셋 | train/val/test 분할 데이터 | SFT 학습 및 LLM-as-a-Eval 평가 |
-
-평가 단계에서는 baseline, RAG, CoT, SFT 실험을 분리하여 응답 품질과 응답 시간을 비교했습니다. 이를 통해 단순 생성 모델 대비 검색 컨텍스트, 추론 방식, 지도 미세조정이 성능에 미치는 영향을 확인할 수 있도록 구성했습니다.
+| 기존 데이터셋 | 관공서별 질의응답 문서 | 도메인 질의와 답변 형식 분석 |
+| 합성 데이터셋 | CoT / DeepEval Synthesizer 기반 생성 데이터 | 현실 세계에서의 다양한 질문 표현과 답변 패턴 확보 |
 
 </details>
 
 <details>
-<summary><strong>[2] 모델 고도화 및 추론 파이프라인</strong></summary>
+<summary><strong>모델 고도화 및 추론 파이프라인</strong></summary>
 
 답변 품질 개선을 위해 Supervised Fine-Tuning(SFT)을 적용하고, 추론 지연을 줄이기 위해 vLLM 기반 비동기 병렬 추론 파이프라인을 구성했습니다.
 
@@ -31,10 +28,8 @@
 |-----------|------|
 | SFT | 관공서 FAQ 답변 형식과 도메인 응답 패턴 학습 |
 | RAG | PostgreSQL + pgvector 기반 검색 컨텍스트 제공 |
-| vLLM | 동시 요청 처리를 위한 고속 추론 서버 |
+| vLLM | 동시 요청 처리를 위한 추론 라이브러리 |
 | MCP | 외부 도구, 컨텍스트 저장소, 추론 서버 연동 인터페이스 |
-
-추론 파이프라인은 RAG query, retrieved contexts, final evaluation 흐름을 분리해 확장성을 높였으며, Model Context Protocol(MCP)을 통해 외부 도구 호출과 검색 컨텍스트를 표준화된 방식으로 연결할 수 있도록 설계했습니다.
 
 </details>
 
@@ -42,8 +37,8 @@
 
 ```
 1. Chain-of-Thought(CoT) 및 DeepEval Synthesizer 기반 골든 데이터셋 구축, LLM-as-a-Eval 벤치마크에서 성능 최대 22% 개선
-2. Supervised Fine-Tuning(SFT)으로 질의-응답 답변 형식 불일치 문제를 완화하고, vLLM 비동기 병렬 추론으로 응답 속도 최대 66% 개선
-3. PostgreSQL + pgvector 기반 RAG 컨텍스트와 Model Context Protocol(MCP) tool 호출을 연동하는 외부 도구 연동 구조 설계
+2. Supervised Fine-Tuning(SFT)으로 질의-응답 답변 형식 불일치 문제를 완화, vLLM 비동기 병렬 추론으로 응답 속도 최대 66% 개선
+3. PostgreSQL + pgvector 기반 RAG 컨텍스트 및 Model Context Protocol(MCP) tool 호출을 연동하는 외부 도구 연동 구조 설계
 ```
 <br>
 
